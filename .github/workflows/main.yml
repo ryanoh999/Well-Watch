@@ -2,7 +2,7 @@ name: Well Watch Daily Update
 
 on:
   schedule:
-    - cron: '0 6 * * *' 
+    - cron: '*/15 * * * *'
 
 jobs:
   download-and-commit:
