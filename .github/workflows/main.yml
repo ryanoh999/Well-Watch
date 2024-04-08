@@ -1,0 +1,45 @@
+name: Well Watch Daily Update
+
+on:
+  schedule:
+    - cron: '0 6 * * *' 
+
+jobs:
+  download-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #- name: Download Dataset 1
+        #run: curl -o path/to/your/dataset1.csv https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements/resource/bfa9f262-24a1-45bd-8dc8-138bc8107266
+
+      - name: Download Dataset 2
+        run: curl -o data/groundwater_level_sites.csv https://data.cnra.ca.gov/dataset/gspmd/resource/38dc5a77-0428-4d8b-970a-51797ed2cd36
+
+      - name: Configure Git
+        run: |
+          git config user.name 'GitHub Actions'
+          git config user.email 'actions@github.com'
+
+      - name: Commit and push if there are changes
+        run: |
+          git add data/groundwater_level_sites.csv
+          git commit -m "Automated dataset update" || echo "No changes to commit"
+          git push
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      # Install dependencies (if needed)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy plotly dash
+
+      # Run your Python scripts
+      - name: Run Main Script
+        run: python main.py
