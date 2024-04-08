@@ -1,8 +1,8 @@
 name: Well Watch Daily Update
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+  #schedule:
+    #- cron: '*/15 * * * *'
   workflow_dispatch:
 jobs:
   download-and-commit:
