@@ -15,7 +15,7 @@ jobs:
         #run: curl -o path/to/your/dataset1.csv https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements/resource/bfa9f262-24a1-45bd-8dc8-138bc8107266
 
       - name: Download Dataset 2
-        run: curl -o data/groundwater_level_sites.csv https://data.cnra.ca.gov/dataset/536dc423-01b3-4094-bdcd-903df84f6768/resource/38dc5a77-0428-4d8b-970a-51797ed2cd36/download/groundwater_level_sites.csv
+        run: curl -L "https://data.cnra.ca.gov/dataset/536dc423-01b3-4094-bdcd-903df84f6768/resource/38dc5a77-0428-4d8b-970a-51797ed2cd36/download/groundwater_level_sites.csv" -o data/groundwater_level_sites.csv
       - name: Configure Git
         run: |
           git config user.name 'GitHub Actions'
