@@ -26,6 +26,7 @@ jobs:
         run: |
           git add data/groundwater_level_sites.csv
           git commit -m "Automated dataset update" || echo "No changes to commit"
+          git pull --no-edit origin main || echo "Attempting to pull, but might need manual intervention if there are conflicts."
           git push
 
       # Set up Python environment
